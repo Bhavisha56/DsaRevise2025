@@ -1,0 +1,18 @@
+class Solution {
+    public int maxSubarraySum(int[] arr, int k) {
+        // Code here
+        int ws=0;
+        int wst=0;
+        int ans=0;
+        for(int i=0;i<arr.length;i++){
+            ws+=arr[i];
+            if(i>=k-1){
+                ans=Math.max(ans,ws);
+                ws-=arr[wst];
+                wst++;
+            }
+        }
+        return ans;
+        
+    }
+}
