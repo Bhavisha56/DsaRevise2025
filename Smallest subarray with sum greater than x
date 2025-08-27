@@ -1,0 +1,51 @@
+
+// User function Template for Java
+
+class Solution {
+
+    public static int smallestSubWithSum(int x, int[] arr) {
+        // Your code goes here
+        int ans=-1;
+        int len=Integer.MAX_VALUE;
+        int sumfull=0;
+        for(int i=0;i<arr.length;i++){
+            int sum=0;
+            int newlen=Integer.MAX_VALUE;
+            for(int j=i;j<arr.length;j++){
+                sum+=arr[j];
+                if(sum>x){
+                    newlen=j-i+1;
+                    break;
+                }
+            }
+            len=Math.min(len,newlen);
+        }
+        if(len==Integer.MAX_VALUE)return 0;
+        return len;
+    }
+}
+
+optimal sol
+
+// User function Template for Java
+
+class Solution {
+
+    public static int smallestSubWithSum(int x, int[] arr) {
+        // Your code goes here
+        int wst=0;
+        int len=Integer.MAX_VALUE;
+        int ws=0;
+        for(int i=0;i<arr.length;i++){
+            ws+=arr[i];
+            while(ws>x){
+                len=Math.min(len,i-wst+1);
+                ws-=arr[wst];
+                wst++;
+            }
+        }
+        if(len==Integer.MAX_VALUE)return 0;
+        return len;
+    }
+}
+
